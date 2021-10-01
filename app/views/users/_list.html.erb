@@ -1,0 +1,24 @@
+      <div>
+        <h3>User info</h3><!--ユーザ画像-->
+        <%#= @user.profile_image %>
+        <h4>name</h4><!--ユーザname-->
+        <%= @user.name %>
+        <h4>introduction</h4>
+        <%= @user.introduction %>
+      </div>
+
+      <div><%= link_to edit_user_path(@user.id) do %>
+         　<i class="fas fa-user-cog"></i>
+           <% end %>
+      </div>
+
+      <div>
+        <h3>New book</h3>
+        <%= form_with model:@book, local:true do |book| %>
+          <h4>Title</h4>
+          <%#= book.string_field: book.title %>
+          <h4>Opinion</h4>
+          <%#= book.text_area: book.body %>
+          <%= book.submit 'Create Book' %>
+        <% end %>
+      </div>

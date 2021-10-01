@@ -1,0 +1,12 @@
+<h1>Users#edit</h1>
+<p>ユーザー情報の編集ページ</p>
+
+<h2>User info</h2>
+<%= form_with model :@user do |user_info| %>
+  <h4>Name</h4>
+  <%= user_info.text_field :name %>
+  <h4>Image</h4>
+  <%%>
+  <h4>Introduction</h4>
+  <%= user_info.text_area :introduction %>
+<% end %>

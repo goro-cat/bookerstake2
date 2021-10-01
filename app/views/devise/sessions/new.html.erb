@@ -1,12 +1,14 @@
 <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
+<!--<#%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>-->
+<%= form_with model: @user, url: user_session_path, local: true do |f| %>
+<!--form_forからの変更。もうあるものだから新たにidは作成しない。find(params[:id])で探す-->
+
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true %>
   </div>
-  
+
   <!--<div class="field">
     <#%= f.label :email %><br />
     <#%= f.email_field :email, autofocus: true, autocomplete: "email" %>

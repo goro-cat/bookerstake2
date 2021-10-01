@@ -1,0 +1,31 @@
+<h1>Users#index</h1>
+<p>ユーザーの一覧</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-4" style="background-color: orange;">
+      <%= render 'users/list', user: @user, book: @book %>
+    </div>
+    <div class="col-8 ">
+      <h4>Users</h4>
+      <table class="table table-striped">
+        <theader>
+          <tr>
+            <th>image</th>
+            <th>name</th>
+            <th></th>
+          </tr>
+        </theader>
+        <tbody>
+          <tr>
+            <% @users.each do |users| %>
+            <td><!--<#%= users.profile_image %>--></td>
+            <td><%= users.name %></td>
+            <td><%= link_to "Show", user_path(users.id)%></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

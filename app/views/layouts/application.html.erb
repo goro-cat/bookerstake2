@@ -7,9 +7,73 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--スマホ対応させるinital-scaleは初期のズーム倍率。maximum-scaleは最大倍率-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1">
   </head>
 
   <body>
-    <%= yield %>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light"><!--navbar:ナビゲーションバーだすよ。navbar~lg:画面幅に応じてバーとアイコンを切り替えて表示。navber-light:カラースキームないと配色が当たらず見えない。-->
+        <div class="container">
+          <div><%=link_to "Bookers", root_path %></div>
+          <button="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <!--※この内data-toggle="collapse"、data-target="#[id名]"は必ず指定しなければ、ナビゲーションアイコンの開閉を行うことができません-->
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+
+              <!--ログアウト機能の追加-->
+              <% if user_signed_in? %>
+              <li class="nav-item"><%= link_to root_path do %>
+                  <i class="fas fa-home">Home</i>
+                  <% end %>
+              </li>
+              <li class="nav-item"><%= link_to users_path do %>
+                  <i class="fas fa-users">Users</i>
+                  <% end %>
+              </li>
+              <li class="nav-item"><%= link_to books_path do %>
+                  <i class="fas fa-book-open">Books</i>
+                  <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete do %><<!--rails routes見て確認-->
+                <i class="fas fa-sign-out-alt">logout</i>
+                <% end %>
+              </li>
+              
+              <% else %>
+              <li class="nav-item"><%= link_to root_path do %>
+                  <i class="fas fa-home">Home</i>
+                  <% end %>
+              </li>
+              <li class="nav-item"><%= link_to home_about_path do %>
+                  <i class="fas fa-link">About</i>
+                  <% end %>
+              </li>
+              <li class="nav-item"><%= link_to new_user_registration_path do %>
+                  <i class="fas fa-user-plus">sign up</i><!--新規登録はsign_up-->
+                  <% end %>
+              </li>
+              <li class="nav-item"><%= link_to new_user_session_path do%>
+                  <i class="fas fa-sign-in-alt">login</i><!--ログインはsign_in-->
+                  <% end %>
+              </li>
+              
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="md-auto">
+      <%= yield %>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-text">CopyRight Infratop.inc</p>
+      </div>
+    </footer>
   </body>
 </html>
